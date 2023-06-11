@@ -1,0 +1,34 @@
+import time
+
+from appium import webdriver
+from appium.webdriver.webdriver import WebDriver
+from selenium.webdriver.common.by import By
+
+desired_cap = {
+  "platformName": "Android",
+  "appium:deviceName": "qcmj9lpvtopnx4oz",
+  "appium:appPackage": "com.miui.calculator",
+  "appium:appActivity": "com.miui.calculator.cal.CalculatorActivity"
+}
+#Connect the Appium server...
+driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_cap)
+print("Calculator Opened")
+#Allow the permissions...
+driver.find_element(By.ID,"android:id/button1").click()
+time.sleep(1)
+#Minimize the Calculator
+driver.find_element(By.ID,"com.miui.calculator:id/iv_tab_cal").click()
+time.sleep(1)
+#Enter num 2...
+driver.find_element(By.ID,"com.miui.calculator:id/btn_2_s").click()
+time.sleep(1)
+#Use the + sign
+driver.find_element(By.ID,"com.miui.calculator:id/btn_plus_s").click()
+time.sleep(1)
+#Enter num 9
+driver.find_element(By.ID,"com.miui.calculator:id/btn_9_s").click()
+time.sleep(1)
+#Calculate the 2+9 and find the result...
+driver.find_element(By.ID,"com.miui.calculator:id/btn_equal_s").click()
+time.sleep(3)
+driver.quit()
